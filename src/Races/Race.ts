@@ -2,7 +2,7 @@ export default abstract class Race {
   constructor(
     private readonly _name: string, 
     private readonly _dexterity: number,
-  ) {}
+  ) { }
 
   public get name(): string {
     return this._name;
