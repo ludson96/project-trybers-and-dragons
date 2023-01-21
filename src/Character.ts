@@ -1,10 +1,8 @@
-import Fighter from './Fighter';
-import Race from './Races/index';
-import Archetype from './Archetypes/index';
+import Fighter, { SimpleFighter } from './Fighter';
+import Race, { Elf } from './Races';
+import Archetype, { Mage } from './Archetypes';
 import Energy from './Energy';
 import getRandomInt from './utils';
-import Elf from './Races/Elf';
-import Mage from './Archetypes/Mage';
 
 export default class Character implements Fighter {
   private _race: Race;
@@ -20,7 +18,7 @@ export default class Character implements Fighter {
     this._dexterity = getRandomInt(1, 10);
     this._race = new Elf(name, this._dexterity);
     this._archetype = new Mage(name);
-    this._maxLifePoints = this._race.maxLifePoints / 2;
+    this._maxLifePoints = (this._race.maxLifePoints / 2);
     this._lifePoints = this._maxLifePoints;
     this._strength = getRandomInt(1, 10);
     this._defense = getRandomInt(1, 10);
@@ -32,6 +30,7 @@ export default class Character implements Fighter {
 
   public get race(): Race { return this._race; }
   public get archetype(): Archetype { return this._archetype; }
+  // public get maxLifePoints(): number { return this._maxLifePoints; }
   public get lifePoints(): number { return this._lifePoints; }
   public get strength(): number { return this._strength; }
   public get defense(): number { return this._defense; }
@@ -49,9 +48,7 @@ export default class Character implements Fighter {
     return this._lifePoints;
   }
 
-  attack(enemy: Fighter): void { 
-    enemy.receiveDamage(this._strength);
-  }
+  attack(enemy: SimpleFighter): void { enemy.receiveDamage(this._strength); }
 
   levelUp(): void {
     this._strength += getRandomInt(1, 10);
@@ -69,8 +66,5 @@ export default class Character implements Fighter {
     }
   }
 
-  // special?(enemy: Fighter): void {
-  //   const damage = enemy.lifePoints - this._strength;
-  //   return damage;
-  // }
+  special() { this._lifePoints = this._maxLifePoints; }
 }
