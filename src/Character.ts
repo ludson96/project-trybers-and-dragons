@@ -13,8 +13,10 @@ export default class Character implements Fighter {
   private _defense: number;
   private _dexterity: number;
   private _energy: Energy;
+  private _name: string;
 
   constructor(name: string) {
+    this._name = name;
     this._dexterity = getRandomInt(1, 10);
     this._race = new Elf(name, this._dexterity);
     this._archetype = new Mage(name);
@@ -45,10 +47,15 @@ export default class Character implements Fighter {
       this._lifePoints -= 1;
     }
     if (this._lifePoints <= 0) { this._lifePoints = -1; }
+
+    console.log(`${this._name} life points: ${this._lifePoints}`);
     return this._lifePoints;
   }
 
-  attack(enemy: SimpleFighter): void { enemy.receiveDamage(this._strength); }
+  attack(enemy: SimpleFighter): void { 
+    enemy.receiveDamage(this._strength); 
+    console.log(`${this._name} attacking`);
+  }
 
   levelUp(): void {
     this._strength += getRandomInt(1, 10);
