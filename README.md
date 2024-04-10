@@ -1,4 +1,4 @@
-# Repositório do projeto Trybers and Dragons 
+# Repositório do projeto Trybers and Dragons 🐉
  ## Módulo: BACK-END
   Repositório possui projeto desenvolvido no período que estive na <b>Trybe</b>, foram aplicado os princípios da arquitetura SOLID e os princípios de POO.
 ## Informações de aprendizados
